@@ -1,0 +1,302 @@
+
+modules:
+    default:
+      roots:
+        lmod: $env/modules
+      lmod:
+      # Core compiler is a dummy that is not used to build the stack, do not change.
+      # Hopefully nobody is trying to build software with gcc-4.6 in 2023 ...
+        core_compilers::
+        - gcc@4.6
+        projections:
+          nlohmann-json: json/{version}
+          nlohmann-json-schema-validator: json-schema-validator/{version}
+          libjpeg-turbo: libjpeg/{version}
+          prod-util: prod_util/{version}
+        exclude:
+      # List of packages for which we don't need modules
+        - apple-libunwind
+        - apple-libuuid
+        - autoconf
+        - automake
+        - berkeley-db
+        - bison
+        - bzip2
+        - compiler-wrapper
+        - diffutils
+        - expat
+        - findutils
+        - fixesproto
+        - flex
+        - freetype
+        - gcc-runtime
+        - gdbm
+        - gmake
+        - googletest
+        - hwloc
+        - inputproto
+        - intel-oneapi-runtime
+        - kbproto
+        - libaec
+        - libbsd
+        - libedit
+        - libevent
+        - libfabric
+        - libffi
+        - libgeotiff
+        - libice
+        - libiconv
+        - libm
+        - libpciaccess
+        - libpthread-stubs
+        - libsigsegv
+        - libsm
+        - libtiff
+        - libtool
+        - libx11
+        - libxau
+        - libxcb
+        - libxdmcp
+        - libxext
+        - libxfixes
+        - libxi
+        - libxml
+        - libxml2
+        - libxrandr
+        - libxrender
+        - libxxf86vm
+        - lz4
+        - m4
+        - mysql
+        - nasm
+        - ncurses
+        - openssh
+        - openssl
+        - perl
+        - pkgconf
+        - pkg-config
+        - py-cython
+        - py-poetry-core
+        - qt
+        - randrproto
+        - readline
+        - renderproto
+        - xcb-proto
+        - xextproto
+        - xf86vidmodeproto
+        - xproto
+        - xrandr
+        - xtrans
+        - xz
+        - yaksa
+        - apple-clang
+        - gcc
+        - intel-oneapi-compilers
+        - intel-oneapi-compilers-classic
+        - llvm
+        - cray-mpich
+        - intel-mpi
+        - intel-oneapi-mpi
+        - mpich
+        - mpt
+        - openmpi
+        hash_length: 0
+        all:
+          autoload: direct
+          environment:
+            set:
+              '{name}_ROOT': '{prefix}'
+          suffixes:
+            +debug: debug
+            build_type=Debug: debug
+        ecmwf-atlas:
+          environment:
+            set:
+              atlas_ROOT: '{prefix}'
+        esmf:
+          environment:
+            set:
+              ESMFMKFILE: '{prefix}/lib/esmf.mk'
+          suffixes:
+            ~openmp: noopenmp
+        ip:
+          suffixes:
+            ~openmp: noopenmp
+        neptune-env:
+          suffixes:
+            ~openmp: noopenmp
+        libpng:
+          environment:
+            set:
+              PNG_ROOT: '{prefix}'
+        madis:
+          environment:
+            set:
+              MADIS_ROOT: '{prefix}'
+        mapl:
+          suffixes:
+            ^esmf@8.6.1~debug ~openmp snapshot=none: esmf-8.6.1-noopenmp
+            ^esmf@8.6.1+debug ~openmp snapshot=none: esmf-8.6.1-debug-noopenmp
+            ^esmf@8.6.1~debug +openmp snapshot=none: esmf-8.6.1
+            ^esmf@8.6.1+debug +openmp snapshot=none: esmf-8.6.1-debug
+            ^esmf@8.8.0~debug ~openmp snapshot=none: esmf-8.8.0-noopenmp
+            ^esmf@8.8.0+debug ~openmp snapshot=none: esmf-8.8.0-debug-noopenmp
+            ^esmf@8.8.0~debug +openmp snapshot=none: esmf-8.8.0
+            ^esmf@8.8.0+debug +openmp snapshot=none: esmf-8.8.0-debug
+            ^esmf@8.9.1~debug ~openmp snapshot=none: esmf-8.9.1-noopenmp
+            ^esmf@8.9.1+debug ~openmp snapshot=none: esmf-8.9.1-debug-noopenmp
+            ^esmf@8.9.1~debug +openmp snapshot=none: esmf-8.9.1
+            ^esmf@8.9.1+debug +openmp snapshot=none: esmf-8.9.1-debug
+        fms:
+          suffixes:
+            constants=GFS: gfs-constants
+            constants=GEOS: geos-constants
+        openmpi:
+          environment:
+            set:
+              OMPI_MCA_rmaps_base_oversubscribe: '1'
+              PRTE_MCA_rmaps_default_mapping_policy: :oversubscribe
+        bacio:
+          environment:
+            set:
+              BACIO_INC4: '{prefix}/include_4'
+              BACIO_INC8: '{prefix}/include_8'
+              BACIO_LIB4: '{prefix}/lib/libbacio_4.a'
+              BACIO_LIB8: '{prefix}/lib/libbacio_8.a'
+        bufr:
+          environment:
+            set:
+              BUFR_ROOT: '{prefix}'
+        crtm:
+          environment:
+            set:
+              CRTM_INC: '{prefix}/include'
+              CRTM_LIB: '{prefix}/lib/libcrtm.a'
+        g2tmpl:
+          environment:
+            set:
+              G2TMPL_INC: '{prefix}/include'
+              G2TMPL_LIB: '{prefix}/lib/libg2tmpl.a'
+        gfsio:
+          environment:
+            set:
+              GFSIO_INC: '{prefix}/include'
+              GFSIO_LIB: '{prefix}/lib/libgfsio.a'
+              GFSIO_INC4: '{prefix}/include'
+              GFSIO_LIB4: '{prefix}/lib/libgfsio.a'
+        grib-util:
+          environment:
+            set:
+              CNVGRIB: '{prefix}/bin/cnvgrib'
+              COPYGB: '{prefix}/bin/copygb'
+              COPYGB2: '{prefix}/bin/copygb2'
+              DEGRIB2: '{prefix}/bin/degrib2'
+              GRB2INDEX: '{prefix}/bin/grb2index'
+              GRBINDEX: '{prefix}/bin/grbindex'
+              GRIB2GRIB: '{prefix}/bin/grib2grib2'
+              TOCGRIB: '{prefix}/bin/tocgrib'
+              TOCGRIB2: '{prefix}/bin/tocgrib2'
+              TOCGRIB2SUPER: '{prefix}/bin/tocgrib2super'
+              WGRIB: '{prefix}/bin/wgrib'
+        landsfcutil:
+          environment:
+            set:
+              LANDSFCUTIL_INC4: '{prefix}/include_4'
+              LANDSFCUTIL_INCd: '{prefix}/include_d'
+              LANDSFCUTIL_LIB4: '{prefix}/lib/liblandsfcutil_4.a'
+              LANDSFCUTIL_LIBd: '{prefix}/lib/liblandsfcutil_d.a'
+        nemsio:
+          environment:
+            set:
+              NEMSIO_INC: '{prefix}/include'
+              NEMSIO_LIB: '{prefix}/lib64/libnemsio.a'
+              MKGFSNEMSIOCTL: '{prefix}/mkgfsnemsioctl'
+              NEMSIO_CHGDATE: '{prefix}/bin/nemsio_chgdate'
+              NEMSIO_GET: '{prefix}/bin/nemsio_get'
+              NEMSIO_READ: '{prefix}/bin/nemsio_read'
+        nemsiogfs:
+          environment:
+            set:
+              NEMSIOGFS_INC: '{prefix}/include'
+              NEMSIOGFS_LIB: '{prefix}/lib'
+        prod-util:
+          environment:
+            set:
+              MDATE: '{prefix}/bin/mdate'
+              NDATE: '{prefix}/bin/ndate'
+              NHOUR: '{prefix}/bin/nhour'
+              FSYNC: '{prefix}/bin/fsync_file'
+        sigio:
+          environment:
+            set:
+              SIGIO_INC: '{prefix}/include'
+              SIGIO_LIB: '{prefix}/lib/libsigio.a'
+              SIGIO_INC4: '{prefix}/include'
+              SIGIO_LIB4: '{prefix}/lib/libsigio.a'
+        sfcio:
+          environment:
+            set:
+              SFCIO_INC: '{prefix}/include'
+              SFCIO_LIB: '{prefix}/lib/libsfcio.a'
+        w3nco:
+          environment:
+            set:
+              W3NCO_INC4: '{prefix}/include_4'
+              W3NCO_INC8: '{prefix}/include_8'
+              W3NCO_INCd: '{prefix}/include_d'
+              W3NCO_LIB4: '{prefix}/lib/libw3nco_4.a'
+              W3NCO_LIB8: '{prefix}/lib/libw3nco_8.a'
+              W3NCO_LIBd: '{prefix}/lib/libw3nco_d.a'
+        wgrib2:
+          environment:
+            set:
+              WGRIB2_INC: '{prefix}/include'
+              WGRIB2_LIB: '{prefix}/lib64/libwgrib2.so'
+              WGRIB2: '{prefix}/bin/wgrib2'
+        wrf-io:
+          environment:
+            set:
+              WRF_IO_INC: '{prefix}/include'
+              WRF_IO_LIB: '{prefix}/lib/libwrf_io.a'
+        upp:
+          environment:
+            set:
+              UPP_INC: '{prefix}/include'
+              UPP_LIB: '{prefix}/lib/libupp.a'
+      # NOTE: This will be fixed upstream in udunits Spack package
+      # Once this is done, remove this section
+        udunits:
+          environment:
+            set:
+              UDUNITS2_XML_PATH: '{prefix}/share/udunits/udunits2.xml'
+
+        hierarchy:
+        - mpi
+      arch_folder: false
+      prefix_inspections:
+        bin:
+        - PATH
+        man:
+        - MANPATH
+        share/man:
+        - MANPATH
+        share/aclocal:
+        - ACLOCAL_PATH
+        lib:
+      # Do not set LIBRARY_PATH, this messes up the
+      # rpath handling on macOS (in cmake builds)
+      #- LIBRARY_PATH
+        - LD_LIBRARY_PATH
+        - DYLD_LIBRARY_PATH
+        lib64:
+      # Do not set LIBRARY_PATH, this messes up the
+      # rpath handling on macOS (in cmake builds)
+      #- LIBRARY_PATH
+        - LD_LIBRARY_PATH
+        - DYLD_LIBRARY_PATH
+        include:
+        - CPATH
+        lib/pkgconfig:
+        - PKG_CONFIG_PATH
+        lib64/pkgconfig:
+        - PKG_CONFIG_PATH
