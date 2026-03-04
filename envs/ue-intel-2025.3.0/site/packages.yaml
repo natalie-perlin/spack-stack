@@ -1,3 +1,4 @@
+
 packages:
     mpi:
       buildable: false
@@ -26,11 +27,10 @@ packages:
               LD_LIBRARY_PATH: /pw/apps/intel/2025.3.0/compiler/2025.3/lib
               PATH: /pw/apps/intel/2025.3.0/compiler/2025.3/bin
               CPATH: /pw/apps/intel/2025.3.0/compiler/2025.3/include
-          extra_rpaths: []
     intel-mpi:
       buildable: false
       externals:
-      - spec: intel-mpi@2021.17 +classic-names
+      - spec: intel-mpi@2021.17 
         prefix: /pw/apps/intel/2025.3.0
         modules:
         - intel/2025.3.0/mpi/2021.17
@@ -70,13 +70,13 @@ packages:
         lapack:: [intel-mkl]
         zlib-api:: [zlib]
     ectrans:
-      require::
+      require:
       - '@1.2.0 ~mkl +fftw'
     gsibec:
-      require::
+      require:
       - '@1.2.1 ~mkl'
     py-numpy:
-      require::
+      require:
       - ^openblas
   # *DH
     bash:
