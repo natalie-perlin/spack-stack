@@ -1,0 +1,44 @@
+packages:
+  all:
+    require:
+    - any_of: ['%nvhpc@=24.11']
+      when: '%nvhpc'
+    - any_of: ['%gcc@=12.4.0']
+      when: '%gcc'
+
+  mpi:
+    buildable: false
+    require:
+    - 'openmpi@=4.1.7a1'
+
+  nvhpc:
+    buildable: false
+    externals:
+    - spec: nvhpc@24.11+blas+lapack~mpi
+      prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc
+      modules:
+      - nvhpc/24.11
+      extra_attributes:
+        compilers:
+          c: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc/Linux_x86_64/24.11/compilers/bin/nvc
+          cxx: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc/Linux_x86_64/24.11/compilers/bin/nvc++
+          fortran: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc/Linux_x86_64/24.11/compilers/bin/nvfortran
+
+  openmpi:
+    buildable: false
+    externals:
+    - spec: openmpi@=4.1.7a1
+      prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc/Linux_x86_64/24.11/comm_libs/12.6/hpcx/hpcx-2.20/ompi
+
+  gcc:
+    buildable: false
+    externals:
+    - spec: gcc@12.4.0 languages:='c,c++,fortran'
+      prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrh
+      modules:
+      - gcc/12.4.0
+      extra_attributes:
+        compilers:
+          c: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrhj/bin/gcc
+          cxx: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrhj/bin/g++
+          fortran: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrhj/bin/gfortran
