@@ -29,12 +29,14 @@ packages:
     externals:
     - spec: openmpi@=4.1.7a1
       prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc/Linux_x86_64/24.11/comm_libs/12.6/hpcx/hpcx-2.20/ompi
+      modules:
+      - nvhpc/24.11
 
   gcc:
     buildable: false
     externals:
     - spec: gcc@12.4.0 languages:='c,c++,fortran'
-      prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrh
+      prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrhj
       modules:
       - gcc/12.4.0
       extra_attributes:
@@ -42,3 +44,23 @@ packages:
           c: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrhj/bin/gcc
           cxx: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrhj/bin/g++
           fortran: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrhj/bin/gfortran
+
+  cuda:
+    buildable: false
+    externals:
+    - spec: cuda@12.6.2
+      prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc/Linux_x86_64/24.11/cuda/12.6
+      modules:
+      - nvhpc/24.11
+
+  # Ursa GPUs H100: CUDA build for H100 (cuda_arch=90)
+  kokkos:
+    require:
+    - '+cuda cuda_arch=90'
+    - '+wrapper'
+  kokkos-kernels:
+    require:
+    - '+cuda cuda_arch=90'
+  arborx:
+    require:
+    - '+cuda cuda_arch=90'
