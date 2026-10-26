@@ -9,7 +9,7 @@ packages:
   mpi:
     buildable: false
     require:
-    - 'openmpi@=4.1.7a1'
+    - 'openmpi@4.1.7a1'
 
   nvhpc:
     buildable: false
@@ -26,14 +26,18 @@ packages:
 
   openmpi:
     buildable: false
+    require::
+    - '+internal-hwloc'
     externals:
-    - spec: openmpi@=4.1.7a1
+    - spec: openmpi@4.1.7a1 +internal-hwloc +two_level_namespace
       prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc/Linux_x86_64/24.11/comm_libs/12.6/hpcx/hpcx-2.20/ompi
       modules:
       - nvhpc/24.11
 
   gcc:
     buildable: false
+    require:
+    - '@12.4.0'
     externals:
     - spec: gcc@12.4.0 languages:='c,c++,fortran'
       prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/gcc-12.4.0-dsgnou52lpn2tus6mohdmcw5mjqmqrhj
@@ -48,7 +52,7 @@ packages:
   cuda:
     buildable: false
     externals:
-    - spec: cuda@12.6.2
+    - spec: cuda@12.6
       prefix: /apps/spack-2024-12/linux-rocky9-x86_64/gcc-11.4.1/nvhpc-24.11-q3al5tofrsh5c7bcspobulw4rlagljjc/Linux_x86_64/24.11/cuda/12.6
       modules:
       - nvhpc/24.11
@@ -64,3 +68,13 @@ packages:
   arborx:
     require:
     - '+cuda cuda_arch=90'
+
+
+  # Build with gcc; ecflow+ui (boost, qt) is C++ heavy
+  ecflow:
+    require:
+    - '%c,cxx=gcc'
+  # zlib has its own require:: in packages.yaml, bypassing the 'all' rule
+  zlib:
+    require:
+    - '%c=gcc'
