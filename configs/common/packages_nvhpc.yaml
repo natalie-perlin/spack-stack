@@ -24,6 +24,10 @@ packages:
   util-linux-uuid:
     require:
     - '%c,cxx=gcc'
+  # nvc rejects GNU computed goto and inline asm .previous directives
+  alsa-lib:
+    require:
+    - '%c=gcc'
   antlr:
     require:
     - '%c,cxx=gcc'
@@ -39,6 +43,9 @@ packages:
   ectrans:
     require:
     - +fftw
+  ffmpeg:
+    require:
+    - '%c,cxx=gcc'
   file:
     require:
     - '%c=gcc'
