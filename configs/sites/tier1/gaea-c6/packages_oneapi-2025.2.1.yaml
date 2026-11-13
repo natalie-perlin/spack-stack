@@ -62,3 +62,16 @@ packages:
           set:
             PE_GCC_EXTERNAL: native
             #FI_CXI_RX_MATCH_MODE: hybrid
+          # gcc-built packages (e.g. nco) link against oneAPI-built netcdf/hdf5,
+          # which pull in libmpi_intel.so -> libfabric.so and Intel runtime libs. 
+          prepend_path:
+            LD_LIBRARY_PATH: '/opt/cray/libfabric/1.22.0/lib64:/opt/intel/oneapi/compiler/2025.2/lib:/opt/cray/pe/mpich/8.1.32/ofi/intel/2022.1/lib'
+  # nco is built with gcc (see common/packages_oneapi.yaml) but links against
+  # oneAPI-built netcdf-c/hdf5, which pull in cray-mpich's libmpi_intel.so 
+  # libfabric.so.1. Without this, configure's "C compiler works" test fails.
+  nco:
+    require:
+    - '~doc'
+    - '%c,cxx=gcc'
+    - 'ldflags="-Wl,-rpath,/opt/cray/libfabric/1.22.0/lib64"'
+

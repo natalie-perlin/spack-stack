@@ -119,10 +119,6 @@ packages:
     externals:
     - spec: libxaw@1.10.13
       prefix: /usr
-  libxml2:
-    externals:
-    - spec: libxml2@2.9.7
-      prefix: /usr
   lustre:
     externals:
     - spec: lustre@2.15.0.2_rc2_cray_113_g62287d0
