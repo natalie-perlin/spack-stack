@@ -13,22 +13,10 @@ packages:
     require::
     - +kokkos
     - +arborx
-
-  # GPUs on ursa are H100
-  # add: '+cuda cuda_arch=90' to kokkos / kokkos-kernels / arborx if building with CUDA support
-  # add: '+wrapper' to kokkos
-  kokkos:
-    require:
-    - '%cxx=gcc'
-  kokkos-kernels:
-    require:
-    - '%cxx=gcc'
-  arborx:
-    require:
-    - '%cxx=gcc'
-  ecflow:
-    require:
-    - '%c,cxx=gcc'
+ 
+# For GPU support on Ursa: GPUs are H100
+# add: '+cuda cuda_arch=90' to kokkos / kokkos-kernels / arborx if building with CUDA support
+# add: '+wrapper' to kokkos
 
 # All other packages listed alphabetically
   autoconf:
