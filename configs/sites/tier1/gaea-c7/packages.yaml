@@ -5,6 +5,13 @@ packages:
   zlib:
     require::
     - '@1.2.13'
+ 
+# Modifications of common packages
+  ufs-weather-model-env:
+    require::
+    - +kokkos
+    - +arborx
+
   cairo:
     # /usr/lib64/libgdk-x11-2.0.so: undefined reference to `cairo_xlib_surface_set_size'
     require: +X
@@ -104,10 +111,6 @@ packages:
   libxaw:
     externals:
     - spec: libxaw@1.10.13
-      prefix: /usr
-  libxml2:
-    externals:
-    - spec: libxml2@2.9.13
       prefix: /usr
   lustre:
     externals:

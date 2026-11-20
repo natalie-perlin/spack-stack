@@ -1,0 +1,7 @@
+mirrors:
+  local-source:
+    url: file:///ncrc/proj/epic/spack-stack/c7/source-cache
+    binary: false
+  local-binary:
+    url: file:///ncrc/proj/epic/spack-stack/c7/build-cache
+    source: false

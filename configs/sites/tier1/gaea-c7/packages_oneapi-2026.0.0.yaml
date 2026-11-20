@@ -15,6 +15,8 @@ packages:
     - spec: cray-mpich@9.2.0
       prefix: /sw/gaea-c7/spack/envs/env_26.06/opt/intel-oneapi-compilers-2026.0.0/cray-mpich-9.2.0-lzfemapfroqogwtmoesox5z5us4btivi
       modules:
+      - Core/26.06
+      - oneapi/2026.0.0
       - cray-mpich/9.2.0
       - libfabric/2.5.1
   intel-oneapi-compilers:
@@ -23,6 +25,7 @@ packages:
     - spec: intel-oneapi-compilers@2026.0.0 +fix_rt_linkage
       prefix: /sw/gaea-c7/oneapi/2026.0.0
       modules:
+        - Core/26.06
         - oneapi/2026.0.0
       extra_attributes:
         compilers:
@@ -31,10 +34,8 @@ packages:
           fortran: /sw/gaea-c7/oneapi/2026.0.0/2026.0/bin/ifx
         environment:
           prepend_path:
-            LD_LIBRARY_PATH: "/opt/cray/libfabric/1.20.1/lib64:\
-              /opt/cray/pe/libsci/26.03.0/INTEL/2025.0/x86_64/lib:\
+            LD_LIBRARY_PATH: "/opt/cray/pe/libsci/26.03.0/INTEL/2025.0/x86_64/lib:\
               /usr/lib/gcc/x86_64-redhat-linux/11:\
-              /opt/intel/oneapi/compiler/2025.2/lib:\
               /sw/gaea-c7/spack/envs/env_26.06/opt/intel-oneapi-compilers-2026.0.0/cray-mpich-9.2.0-lzfemapfroqogwtmoesox5z5us4btivi/lib"
   intel-oneapi-mkl:
     buildable: False
@@ -42,14 +43,15 @@ packages:
     - spec: intel-oneapi-mkl@2026.0.0
       prefix: /sw/gaea-c7/spack/envs/env_26.06/opt/intel-oneapi-compilers-2026.0.0/intel-oneapi-mkl-2026.0.0-ferm7nss4cxphhlu5rbcxzwblz7xyg53
       modules:
+      - Core/26.06
       - oneapi/2026.0.0
-      - intel-oneapi-mkl/2026.0.0
   gcc:
     buildable: False
     externals:
     - spec: gcc@16.1.0 languages:='c,c++'
       prefix: /sw/gaea-c7/gcc/16.1.0/bin
       modules:
+        - Core/26.06
         - gcc/16.1.0
       extra_attributes:
         compilers:
