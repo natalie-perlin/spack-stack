@@ -1,3 +1,8 @@
 mirrors:
-  local-source: file:///apps/contrib/spack-stack/source-cache
-  local-binary: file:///apps/contrib/spack-stack/build-cache
+  local-source:
+    url: file:///apps/contrib/spack-stack/source-cache
+    binary: false
+  local-binary:
+    url: file:///apps/contrib/spack-stack/build-cache
+    source: false
+
