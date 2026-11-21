@@ -18,6 +18,11 @@ packages:
       modules:
       - zlib/1.2.13
  
+  ufs-weather-model-env:
+    require::
+    - +kokkos
+    - +arborx
+
   # https://github.com/JCSDA/spack-stack/issues/1892
   openssl:
     require:

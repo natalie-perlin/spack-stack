@@ -9,6 +9,7 @@ packages:
     - spec: openmpi@4.1.4 ~internal-hwloc +two_level_namespace
       prefix: /apps/spack-managed/gcc-12.2.0/openmpi-4.1.4-hf3dkf6r56x3klzcgs3u7esgt3fhnk63
       modules:
+      - gcc/12.2.0
       - openmpi/4.1.4
   gcc:
     buildable: False
@@ -22,3 +23,4 @@ packages:
           c: /apps/spack-managed/gcc-11.3.1/gcc-12.2.0-7cu3qahzhsxpauy4jlnsbcqmlbkxbbbo/bin/gcc
           cxx: /apps/spack-managed/gcc-11.3.1/gcc-12.2.0-7cu3qahzhsxpauy4jlnsbcqmlbkxbbbo/bin/g++
           fortran: /apps/spack-managed/gcc-11.3.1/gcc-12.2.0-7cu3qahzhsxpauy4jlnsbcqmlbkxbbbo/bin/gfortran
+
